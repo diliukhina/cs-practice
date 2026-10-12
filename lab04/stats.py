@@ -21,6 +21,7 @@ def read_valid(lines: list[str]) -> list[dict]:
 
     return records
 def average_by_city(records: list[dict]) -> dict:
+        """Вычисляет среднюю температуру для каждого города."""
     totals = {}
     counts = {}
     for record in records:
