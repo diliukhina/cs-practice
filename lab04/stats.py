@@ -1,4 +1,5 @@
 def parse_record(line: str) -> dict:
+        """Проверяет строку и преобразует её в словарь."""
     parts = line.split(";")
     if len(parts)!=3:
         raise ValueError("Неверное количество полей")
@@ -40,3 +41,4 @@ def warmest_city(records: list[dict]) -> str:
         return ""
 
     return sorted(averages, key=lambda city: (-averages[city], city))[0]
+
