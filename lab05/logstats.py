@@ -35,3 +35,33 @@ def count_levels(lines):
         counts[level] += 1
 
     return counts
+
+
+def top_errors(lines, n):
+    counts = {}
+
+    for line in lines:
+        if not line.strip():
+            continue
+
+        try:
+            event = parse_event(line)
+        except ValueError:
+            continue
+
+        if event["level"] == "ERROR":
+            message = event["message"]
+
+            if message not in counts:
+                counts[message] = 0
+
+            counts[message] += 1
+
+    errors = []
+
+    for message in counts:
+        errors.append([message, counts[message]])
+
+    errors.sort(key=lambda item: (-item[1], item[0]))
+
+    return errors[:max(0, n)]
